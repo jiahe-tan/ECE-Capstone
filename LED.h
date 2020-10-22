@@ -14,5 +14,6 @@
 
 // Prototypes
 void InitializeLEDPortPins(void);
+void automatic();
 
 #endif

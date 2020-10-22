@@ -6,3 +6,8 @@ void InitializeLEDPortPins(void)
     TURN_OFF_LED;
     SET_LED_AS_AN_OUTPUT;
 }
+
+void automatic()
+{
+    
+}

@@ -13,7 +13,6 @@ FSMType PWM;
 void ConfigureClockModule(void);
 
 
-
 void main(void)
 {
 	// Stop the watchdog timer, and configure the clock module.
@@ -26,7 +25,6 @@ void main(void)
 	ConfigureTimerA();
 
     // Initialize Finite State Machine (FSM).
-    InitializeFSM(&PWM, (char *) &RED_LED_PORT, RED_LED_BIT);
 
     _enable_interrupts();
 }

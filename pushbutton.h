@@ -4,24 +4,31 @@
 #include <msp430.h>
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- *                 Pushbutton
+ *                 OnOffbutton
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  *   GPIO      :  P1.3
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
-#define PUSHBUTTON_BIT						BIT3	// Port pin bit location for pushbutton
-#define PUSHBUTTON_REN  					P1REN   // Register to enable resistors for pushbutton
-#define PUSHBUTTON_PORT						P1OUT 	// Register to select pull-up/pull-down
-#define PUSHBUTTON_DDR						P1DIR 	// Data Direction Register (DDR) for pushbutton.
-#define PUSHBUTTON_IE   					P1IE    // Port interrupt enable
-#define PUSHBUTTON_IFG  					P1IFG   // Port interrup flag
-#define SET_PUSHBUTTON_TO_AN_INPUT			PUSHBUTTON_DDR &= ~PUSHBUTTON_BIT
-#define ENABLE_PULL_UP_PULL_DOWN_RESISTORS	PUSHBUTTON_REN |= PUSHBUTTON_BIT
-#define SELECT_PULL_UP_RESISTORS			PUSHBUTTON_PORT |= PUSHBUTTON_BIT
-#define ENABLE_PUSHBUTTON_INTERRUPT			PUSHBUTTON_IE |= PUSHBUTTON_BIT
-#define CLEAR_PUSHBUTTON_INTERRUPT_FLAG		PUSHBUTTON_IFG &= ~PUSHBUTTON_BIT
+#define ONOFFBUTTON_BIT						BIT3	// Port pin bit location for pushbutton
+#define ONOFFBUTTON_REN  					P1REN   // Register to enable resistors for pushbutton
+#define ONOFFBUTTON_PORT						P1OUT 	// Register to select pull-up/pull-down
+#define ONOFFBUTTON_DDR						P1DIR 	// Data Direction Register (DDR) for pushbutton.
+#define ONOFFBUTTON_IE   					P1IE    // Port interrupt enable
+#define ONOFFBUTTON_IFG  					P1IFG   // Port interrup flag
+#define SET_ONOFFBUTTON_TO_AN_INPUT			PUSHBUTTOONOFFR &= ~ONOFFBUTTON_BIT
+#define ENABLE_PULL_UP_PULL_DOWN_RESISTORS	ONOFFBUTTON_REN |= ONOFFBUTTON_BIT
+#define SELECT_PULL_UP_RESISTORS			ONOFFBUTTON_PORT |= ONOFFBUTTON_BIT
+#define ENABLE_ONOFFBUTTON_INTERRUPT			ONOFFBUTTON_IE |= ONOFFBUTTON_BIT
+#define CLEAR_ONOFFBUTTON_INTERRUPT_FLAG		ONOFFBUTTON_IFG &= ~ONOFFBUTTON_BIT
 
 // Prototypes
 void InitializePushButtonPortPin(void);
 
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *                 Autobutton
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *   GPIO      :  P1.3
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
 #endif
