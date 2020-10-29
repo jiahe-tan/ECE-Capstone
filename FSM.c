@@ -2,10 +2,18 @@
 #include "LED.h"
 
 
-enum states {S_OFF, S_ON, S_NMANUAL, S_DMANUAL, S_AUTO};
-enum events {E_OFF, E_ON, E_NON, E_NOFF, E_AUTOON, E_INC, E_DEC, E_TIMEOUT, E_MAX};
+enum states {S_ON, S_NMANUAL, S_DMANUAL, S_AUTO};
+enum events {E_NON, E_NOFF, E_AUTOON, E_INC, E_DEC, E_TIMEOUT, E_MAX};
 
 int	CurState= S_OFF;
+
+void InitializeFSM(FSMType *FSM, char * FSMPort, unsigned char FSMBit)
+{
+    FSM->Direction = up;
+    FSM->TA0CCR1Delta = TA0CCR1_DELTA;
+    FSM->PWMPort = FSMPort;
+    FSM->PWMPortBit = FSMBit;
+}
 
 
 void NextStateFunction(int event)
@@ -14,22 +22,13 @@ void NextStateFunction(int event)
 
     switch ( CurState )	
     {	
-    case S_OFF:	
-        switch (event)		
-        {
-		case E_ON:
-			NextState = S_ON;
-			break;
-        }
-        break;
-
     case S_ON:
     	switch (event)
         {
 		case E_NON:
 		    NextState = S_NMANUAL;
 		    break;
-		case E_OFF:
+		case E_NOFF:
 		    NextState = S_DMANUAL;
 		    break;
         }
@@ -38,9 +37,7 @@ void NextStateFunction(int event)
     case S_NMANUAL:	
     	switch (event)
         {
-		case E_OFF:
-		    NextState = S_OFF;
-		    break;
+		
 		case E_INC:
 		    NextState = CurState;
 		    break;
@@ -56,9 +53,6 @@ void NextStateFunction(int event)
 		case E_AUTOON:
 		    NextState = S_AUTO;
 		    break;
-		case E_OFF:
-		    NextState = S_OFF;
-		    break;
 		case E_INC:
 		    NextState = CurState;
 		    break;
@@ -73,9 +67,6 @@ void NextStateFunction(int event)
         {
 		case E_AUTOOFF:
 		    NextState = S_DMANUAL;
-		    break;
-		case E_OFF:
-		    NextState = S_OFF;
 		    break;
         }
         break;

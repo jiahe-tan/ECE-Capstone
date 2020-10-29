@@ -34,8 +34,5 @@ void ConfigureClockModule(void)
     // Configure Digitally Controlled Oscillator (DCO) using factory calibrations.
 	DCOCTL  = CALDCO_FREQUENCY;
 	BCSCTL1 = CALBC1_FREQUENCY;
-
-	// Divide SMCLK
-	BCSCTL2 |= SMCLK_DIVIDE;
 }
 
